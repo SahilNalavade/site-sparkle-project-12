@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 
-const bookingUrl = "https://calendly.com/kalipr_expert/discovery-call";
+import { Button } from "@/components/ui/button";
+import { ConsultationBand, PageShell, SiteHeader, bookingUrl } from "@/components/kaliper-site";
 
 const tools = ["Segment", "Mixpanel", "Power BI", "Looker", "Fivetran", "Amplitude", "Google Analytics 4", "Statsig", "Heap"];
 
@@ -59,40 +59,9 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
-    <div className="min-h-screen overflow-x-hidden bg-paper font-sans text-ink selection:bg-amber/30">
-      <div>
-        <header className="sticky top-0 z-40 border-b border-ink/10 bg-paper/85 backdrop-blur-xl">
-          <nav aria-label="Main navigation" className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-4 md:px-8">
-            <a href="#top" className="flex items-center gap-2 font-display text-lg font-bold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal">
-              <span className="size-2.5 rounded-full bg-amber" aria-hidden="true" />
-              <span>Kaliper</span>
-            </a>
-            <div className="hidden items-center gap-8 text-sm font-semibold md:flex">
-              <a href="#services" className="text-ink/65 underline-offset-4 transition-colors hover:text-ink hover:underline">Services</a>
-              <a href="#proof" className="text-ink/65 underline-offset-4 transition-colors hover:text-ink hover:underline">Results</a>
-              <a href="#approach" className="text-ink/65 underline-offset-4 transition-colors hover:text-ink hover:underline">Why Kaliper</a>
-            </div>
-            <div className="flex items-center gap-3">
-              <a href={bookingUrl} target="_blank" rel="noreferrer" className="hidden rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-teal sm:inline-flex">Talk to an Expert</a>
-              <button type="button" className="grid size-10 place-items-center rounded-full border border-ink/15 bg-paper text-ink md:hidden" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}>
-                <span className="font-mono text-lg leading-none">{menuOpen ? "×" : "≡"}</span>
-              </button>
-            </div>
-          </nav>
-          {menuOpen && (
-            <div className="border-t border-ink/10 bg-paper px-5 py-5 md:hidden">
-              <div className="flex flex-col gap-4 text-sm font-semibold">
-                <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
-                <a href="#proof" onClick={() => setMenuOpen(false)}>Results</a>
-                <a href="#approach" onClick={() => setMenuOpen(false)}>Why Kaliper</a>
-                <a href={bookingUrl} target="_blank" rel="noreferrer" className="mt-1 inline-flex w-fit rounded-full bg-ink px-5 py-2.5 text-paper">Talk to an Expert</a>
-              </div>
-            </div>
-          )}
-        </header>
+    <PageShell>
+        <SiteHeader />
 
         <main id="top">
           <section className="border-b border-ink/10">
@@ -108,7 +77,7 @@ function Index() {
                   Kaliper measures what matters across your marketing stack. We build the data engineering, analytics, BI, and AI systems that turn spend into signal.
                 </p>
                 <div className="kal-anim mt-8 flex flex-wrap items-center gap-5 [animation-delay:240ms]">
-                  <a href={bookingUrl} target="_blank" rel="noreferrer" className="rounded-full bg-amber px-6 py-3.5 text-sm font-bold text-ink transition-colors hover:bg-teal hover:text-paper">Talk to an Expert</a>
+                  <Button asChild className="h-auto rounded-full bg-amber px-6 py-3.5 font-bold text-ink shadow-none hover:bg-teal hover:text-paper"><a href={bookingUrl} target="_blank" rel="noreferrer">Talk to an Expert</a></Button>
                   <a href="#services" className="text-sm font-bold underline decoration-amber decoration-2 underline-offset-4">Explore services</a>
                 </div>
               </div>
@@ -153,11 +122,12 @@ function Index() {
                 <span className="hidden font-mono text-[11px] uppercase tracking-[0.18em] text-ink/40 md:block">Services</span>
               </div>
               <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 md:grid-cols-3">
-                {services.map((service) => <article className="bg-paper/60 p-7 backdrop-blur-xl" key={service.title}>
+                {services.map((service, serviceIndex) => <article className="bg-paper/60 p-7 backdrop-blur-xl" key={service.title}>
                   <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-teal">({service.number})</span>
                   <div className="mt-5 flex h-16 items-end gap-1.5" aria-hidden="true">{service.bars.map((height, index) => <div key={height} className={`flex-1 rounded-t-sm ${service.colors[index]}`} style={{ height: `${height}%` }} />)}</div>
                   <h3 className="mt-6 font-display text-xl font-semibold">{service.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-ink/65">{service.copy}</p>
+                  {serviceIndex !== 1 && <Link to={serviceIndex === 0 ? "/data-engineering-services/" : "/ai-ml-consulting-for-marketing/"} className="mt-5 inline-flex text-sm font-bold underline decoration-amber decoration-2 underline-offset-4">View service</Link>}
                 </article>)}
               </div>
             </div>
@@ -178,28 +148,8 @@ function Index() {
             </div>
           </section>
 
-          <section id="contact" className="scroll-mt-20">
-            <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-8 md:py-20">
-              <div className="relative overflow-hidden rounded-3xl border border-ink/10 bg-paper/60 px-6 py-14 text-center shadow-instrument backdrop-blur-2xl md:px-16 md:py-20">
-                <div className="relative">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-teal">Next step</span>
-                  <h2 className="mx-auto mt-5 max-w-[22ch] text-balance font-display text-4xl font-bold leading-tight tracking-normal md:text-5xl">Put your marketing data on the right scale.</h2>
-                  <p className="mx-auto mt-5 max-w-[50ch] leading-relaxed text-ink/70">Start with a discovery call and a clear conversation about your goals, data landscape, and most valuable next move.</p>
-                  <a href={bookingUrl} target="_blank" rel="noreferrer" className="mt-8 inline-flex rounded-full bg-ink px-7 py-4 text-base font-semibold text-paper transition-colors hover:bg-teal">Talk to an Expert</a>
-                </div>
-              </div>
-            </div>
-          </section>
+          <ConsultationBand title="Put your marketing data on the right scale." copy="Start with a discovery call and a clear conversation about your goals, data landscape, and most valuable next move." />
         </main>
-
-        <footer className="border-t border-ink/10">
-          <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-4 px-5 py-8 text-sm text-ink/50 sm:flex-row sm:items-center md:px-8">
-            <div className="flex items-center gap-2 font-display font-bold text-ink"><span className="size-2 rounded-full bg-amber" />Kaliper</div>
-            <p>Marketing Analytics · Data Engineering · BI · AI</p>
-            <a href="https://www.linkedin.com/company/kaliper/" target="_blank" rel="noreferrer" className="underline-offset-4 hover:text-ink hover:underline">LinkedIn</a>
-          </div>
-        </footer>
-      </div>
-    </div>
+    </PageShell>
   );
 }
