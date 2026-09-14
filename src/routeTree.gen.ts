@@ -10,33 +10,59 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AiMlConsultingForMarketingRouteImport } from './routes/ai-ml-consulting-for-marketing'
+import { Route as DataEngineeringServicesRouteImport } from './routes/data-engineering-services'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiMlConsultingForMarketingRoute =
+  AiMlConsultingForMarketingRouteImport.update({
+    id: '/ai-ml-consulting-for-marketing',
+    path: '/ai-ml-consulting-for-marketing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DataEngineeringServicesRoute = DataEngineeringServicesRouteImport.update({
+  id: '/data-engineering-services',
+  path: '/data-engineering-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-ml-consulting-for-marketing': typeof AiMlConsultingForMarketingRoute
+  '/data-engineering-services': typeof DataEngineeringServicesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-ml-consulting-for-marketing': typeof AiMlConsultingForMarketingRoute
+  '/data-engineering-services': typeof DataEngineeringServicesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-ml-consulting-for-marketing': typeof AiMlConsultingForMarketingRoute
+  '/data-engineering-services': typeof DataEngineeringServicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/ai-ml-consulting-for-marketing' | '/data-engineering-services'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/ai-ml-consulting-for-marketing' | '/data-engineering-services'
+  id:
+    | '__root__'
+    | '/'
+    | '/ai-ml-consulting-for-marketing'
+    | '/data-engineering-services'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiMlConsultingForMarketingRoute: typeof AiMlConsultingForMarketingRoute
+  DataEngineeringServicesRoute: typeof DataEngineeringServicesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +74,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-ml-consulting-for-marketing': {
+      id: '/ai-ml-consulting-for-marketing'
+      path: '/ai-ml-consulting-for-marketing'
+      fullPath: '/ai-ml-consulting-for-marketing'
+      preLoaderRoute: typeof AiMlConsultingForMarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/data-engineering-services': {
+      id: '/data-engineering-services'
+      path: '/data-engineering-services'
+      fullPath: '/data-engineering-services'
+      preLoaderRoute: typeof DataEngineeringServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiMlConsultingForMarketingRoute: AiMlConsultingForMarketingRoute,
+  DataEngineeringServicesRoute: DataEngineeringServicesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
