@@ -4,85 +4,170 @@ import { ArrowDownRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ConsultationBand, PageShell, bookingUrl } from "@/components/kaliper-site";
 
-const capabilities = [
-  ["Predictive scoring", "Forecast churn, lifetime value, and conversion propensity from behavioral and transactional signals."],
-  ["Marketing mix modeling", "Measure saturation and cross-channel effects with models built for your spend patterns."],
-  ["Audience modeling", "Replace static demographic groups with behavior-led segments that evolve with customers."],
-  ["Data-driven attribution", "Estimate the marginal value of touchpoints instead of relying on fixed attribution rules."],
-  ["Applied generative AI", "Deploy narrow, valuable tools for creative testing, research, and internal data access."],
+const sections = [
+  { id: "beyond-the-label", label: "Beyond the AI label" },
+  { id: "what-actually-works", label: "What actually works" },
+  { id: "readiness", label: "The readiness question" },
+  { id: "operating-model", label: "Operating a model" },
+  { id: "takeaways", label: "Takeaways" },
 ];
 
-const process = ["Audit", "Feature engineering", "Validation", "Integration", "Monitoring"];
+const useCases = [
+  ["Predictive scoring", "Forecast churn, lifetime value, and conversion propensity from behavioral and transactional signals — then push the scores into the tools where campaigns are actually built."],
+  ["Marketing mix modeling", "Measure saturation and cross-channel effects with models fitted to your own spend patterns, not an agency's generic benchmark curve."],
+  ["Audience modeling", "Replace static demographic groups with behavior-led segments that update as customers change."],
+  ["Data-driven attribution", "Estimate the marginal value of a touchpoint instead of trusting a fixed last-click or linear rule."],
+  ["Applied generative AI", "Narrow, valuable tools: creative variant testing, research synthesis, and plain-language access to internal data."],
+];
+
+const readiness = [
+  "Reliable event history going back far enough to train on",
+  "Customer identities that resolve across channels",
+  "A clear activation destination for the model output",
+  "A named owner who acts on what the model says",
+];
+
+const takeaways = [
+  "Start from the decision you want to improve, not the model you want to build.",
+  "Data quality is the first AI capability — everything downstream inherits its flaws.",
+  "A model that nobody has wired into a workflow produces no value, however accurate it is.",
+  "Monitoring is part of the build, not a phase-two item.",
+];
 
 export const Route = createFileRoute("/ai-ml-consulting-for-marketing")({
   head: () => ({
     meta: [
-      { title: "AI/ML Consulting for Marketing | Kaliper" },
-      { name: "description", content: "Build production-ready marketing AI for predictive scoring, MMM, audience modeling, attribution, and practical generative AI." },
-      { property: "og:title", content: "AI/ML Consulting for Marketing | Kaliper" },
-      { property: "og:description", content: "Move from AI dashboards to marketing models your team can operate, measure, and trust." },
+      { title: "Why Most Marketing AI Never Ships | Kaliper Blog" },
+      { name: "description", content: "A field guide to marketing AI that reaches production: predictive scoring, mix modeling, attribution, data readiness, and the operating habits behind each." },
+      { property: "og:title", content: "Why Most Marketing AI Never Ships" },
+      { property: "og:description", content: "Predictive scoring, mix modeling, attribution — and the data readiness that decides whether any of it survives contact with the business." },
       { property: "og:type", content: "article" },
       { property: "og:url", content: "/ai-ml-consulting-for-marketing/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/ai-ml-consulting-for-marketing/" }],
   }),
-  component: AiMarketingPage,
+  component: AiMarketingArticle,
 });
 
-function AiMarketingPage() {
+function AiMarketingArticle() {
   return (
     <PageShell>
       <main>
-        <section className="border-b border-ink/10">
-          <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-5 py-16 md:px-8 lg:grid-cols-[1.25fr_.75fr] lg:py-24">
-            <div>
-              <span className="kal-anim font-mono text-[11px] uppercase tracking-[0.18em] text-teal">AI / ML consulting · Marketing</span>
-              <h1 className="kal-anim mt-6 max-w-[14ch] text-balance font-display text-[clamp(2.7rem,6vw,4.8rem)] font-bold leading-[0.98] tracking-normal [animation-delay:80ms]">Models that change the next marketing decision.</h1>
-              <p className="kal-anim mt-7 max-w-[58ch] text-lg leading-relaxed text-ink/70 [animation-delay:160ms]">Move beyond AI-labelled dashboards. We design, validate, and integrate predictive systems around the real decisions your marketing team makes.</p>
-              <Button asChild className="kal-anim mt-8 h-auto rounded-full bg-amber px-6 py-3.5 font-bold text-ink shadow-none hover:bg-teal hover:text-paper [animation-delay:240ms]"><a href={bookingUrl} target="_blank" rel="noreferrer">Discuss your use case <ArrowDownRight /></a></Button>
-            </div>
-            <div className="kal-anim rounded-2xl border border-ink/10 bg-paper/65 p-6 shadow-instrument backdrop-blur-xl [animation-delay:200ms]">
-              <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.15em] text-ink/45"><span>Propensity model</span><span className="text-teal">Live signal</span></div>
-              <div className="relative mt-9 h-52 border-b border-l border-ink/15">
-                <div className="absolute inset-x-0 top-1/3 border-t border-dashed border-ink/10" />
-                <div className="absolute inset-x-0 top-2/3 border-t border-dashed border-ink/10" />
-                <svg className="absolute inset-0 size-full overflow-visible" viewBox="0 0 400 200" preserveAspectRatio="none" aria-label="Predictive signal rising over time">
-                  <path d="M0 176 C58 168 54 130 108 137 S166 152 210 99 S283 91 318 48 S372 25 400 14" fill="none" stroke="currentColor" strokeWidth="4" className="text-teal" />
-                  <path d="M0 186 C70 181 80 170 132 169 S205 151 259 150 S345 115 400 108" fill="none" stroke="currentColor" strokeWidth="3" strokeDasharray="5 7" className="text-amber" />
-                </svg>
-                <span className="absolute right-0 top-0 size-3 rounded-full border-2 border-paper bg-teal shadow" />
+        <article>
+          <header className="border-b border-ink/10">
+            <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-8 lg:py-24">
+              <div className="max-w-[46rem]">
+                <span className="kal-anim font-mono text-[11px] uppercase tracking-[0.18em] text-teal">Blog · AI &amp; machine learning</span>
+                <h1 className="kal-anim mt-6 text-balance font-display text-[clamp(2.3rem,5vw,4rem)] font-bold leading-[1.02] [animation-delay:80ms]">Why most marketing AI never ships</h1>
+                <p className="kal-anim mt-7 text-lg leading-relaxed text-ink/70 [animation-delay:160ms]">
+                  Marketing teams rarely fail at AI because they picked the wrong algorithm. They fail because the data underneath was never ready, and because nothing downstream was built to receive the model&rsquo;s answer.
+                </p>
+                <div className="kal-anim mt-9 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[11px] uppercase tracking-[0.14em] text-ink/45 [animation-delay:220ms]">
+                  <span className="text-ink/70">Kaliper Data Team</span>
+                  <span aria-hidden="true">·</span>
+                  <time dateTime="2026-09-02">2 September 2026</time>
+                  <span aria-hidden="true">·</span>
+                  <span>9 min read</span>
+                </div>
               </div>
-              <div className="mt-5 flex justify-between font-mono text-[10px] text-ink/40"><span>Observed</span><span>Predicted</span><span>Activated</span></div>
             </div>
-          </div>
-        </section>
+          </header>
 
-        <section className="border-b border-ink/10">
-          <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-8 md:py-20">
-            <div className="max-w-2xl"><span className="font-mono text-[11px] uppercase tracking-[0.18em] text-teal">What we build</span><h2 className="mt-5 text-balance font-display text-3xl font-bold md:text-4xl">AI that enters the workflow—not another dashboard beside it.</h2></div>
-            <div className="mt-12 border-t border-ink/15">
-              {capabilities.map(([title, copy], index) => <article key={title} className="grid gap-4 border-b border-ink/15 py-7 md:grid-cols-[90px_1fr_1.35fr] md:items-start"><span className="font-mono text-xs text-amber">0{index + 1}</span><h3 className="font-display text-xl font-semibold">{title}</h3><p className="max-w-[60ch] text-sm leading-relaxed text-ink/65">{copy}</p></article>)}
+          <div className="mx-auto grid max-w-[1400px] gap-14 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[minmax(0,46rem)_1fr]">
+            <div className="space-y-16">
+              <section id="beyond-the-label" className="scroll-mt-28">
+                <h2 className="font-display text-3xl font-bold">Beyond the AI label</h2>
+                <p className="mt-5 leading-relaxed text-ink/75">
+                  Most tools sold as marketing AI are reporting layers with a prediction bolted on. They surface a number, place it on a dashboard, and leave the hardest part &mdash; deciding what to do differently &mdash; entirely with the team.
+                </p>
+                <p className="mt-4 leading-relaxed text-ink/75">
+                  The useful question is not &ldquo;what can a model predict?&rdquo; but &ldquo;which recurring decision is currently made on instinct, and would a better estimate change it?&rdquo; That framing eliminates a surprising share of proposed AI projects before a line of code is written, which is exactly what it is for.
+                </p>
+                <figure className="mt-8 border-l-4 border-amber pl-6">
+                  <blockquote className="font-display text-xl font-semibold leading-snug">
+                    A prediction that arrives after the budget is allocated is a report, not a model.
+                  </blockquote>
+                </figure>
+              </section>
+
+              <section id="what-actually-works" className="scroll-mt-28">
+                <h2 className="font-display text-3xl font-bold">What actually works</h2>
+                <p className="mt-5 leading-relaxed text-ink/75">
+                  Five categories cover nearly every marketing AI engagement that makes it to production and stays there.
+                </p>
+                <div className="mt-8 border-t border-ink/15">
+                  {useCases.map(([title, copy], index) => (
+                    <div key={title} className="grid gap-3 border-b border-ink/15 py-6 md:grid-cols-[70px_1fr]">
+                      <span className="font-mono text-xs text-amber">0{index + 1}</span>
+                      <div>
+                        <h3 className="font-display text-lg font-semibold">{title}</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-ink/65">{copy}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section id="readiness" className="scroll-mt-28">
+                <h2 className="font-display text-3xl font-bold">The readiness question</h2>
+                <p className="mt-5 leading-relaxed text-ink/75">
+                  Duplicate events, unstable identity resolution, and historical data locked inside a platform export stop more AI initiatives than model selection ever has. Before promising an outcome, it is worth confirming four things.
+                </p>
+                <ul className="mt-7 space-y-4 text-ink/75">
+                  {readiness.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-relaxed">
+                      <Check className="mt-0.5 size-4 shrink-0 text-teal" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-6 leading-relaxed text-ink/75">
+                  If two or more are missing, the honest recommendation is data engineering first. That work is less exciting and far more likely to produce a result.
+                </p>
+              </section>
+
+              <section id="operating-model" className="scroll-mt-28">
+                <h2 className="font-display text-3xl font-bold">Operating a model</h2>
+                <p className="mt-5 leading-relaxed text-ink/75">
+                  Launch is the cheap part. Inputs drift, channels change, and a model trained on last year&rsquo;s buying behaviour quietly degrades. Treat monitoring, retraining triggers, and a named human owner as part of the original scope, and the model keeps earning its place. Skip them, and it becomes another number nobody trusts within two quarters.
+                </p>
+              </section>
+
+              <section id="takeaways" className="scroll-mt-28">
+                <h2 className="font-display text-3xl font-bold">Takeaways</h2>
+                <ol className="mt-7 space-y-5">
+                  {takeaways.map((item, index) => (
+                    <li key={item} className="flex gap-5 border-b border-ink/10 pb-5 last:border-0">
+                      <span className="grid size-8 shrink-0 place-items-center rounded-full border border-ink/15 font-mono text-xs text-amber">{index + 1}</span>
+                      <p className="leading-relaxed text-ink/75">{item}</p>
+                    </li>
+                  ))}
+                </ol>
+              </section>
             </div>
-          </div>
-        </section>
 
-        <section className="bg-ink text-paper">
-          <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-16 md:px-8 md:py-20 lg:grid-cols-[.8fr_1.2fr]">
-            <div><span className="font-mono text-[11px] uppercase tracking-[0.18em] text-amber">From hypothesis to operation</span><h2 className="mt-5 max-w-[15ch] text-balance font-display text-3xl font-bold md:text-4xl">A model is only useful when it survives contact with the business.</h2><p className="mt-5 max-w-[46ch] leading-relaxed text-paper/65">Every engagement accounts for the data feeding the model, the system receiving its output, and the monitoring needed after launch.</p></div>
-            <ol className="border-t border-paper/20">
-              {process.map((step, index) => <li key={step} className="flex items-center gap-5 border-b border-paper/20 py-5"><span className="grid size-9 shrink-0 place-items-center rounded-full border border-paper/25 font-mono text-xs text-amber">{index + 1}</span><span className="font-display text-lg font-semibold">{step}</span>{index < process.length - 1 ? <ArrowDownRight className="ml-auto text-paper/35" /> : <Check className="ml-auto text-teal" />}</li>)}
-            </ol>
+            <aside className="lg:sticky lg:top-28 lg:h-fit">
+              <nav aria-label="Article contents" className="rounded-2xl border border-ink/10 bg-paper/65 p-6 shadow-instrument backdrop-blur-xl">
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink/45">In this article</p>
+                <ul className="mt-4 space-y-3 text-sm">
+                  {sections.map((section) => (
+                    <li key={section.id}>
+                      <a href={`#${section.id}`} className="text-ink/65 underline-offset-4 transition-colors hover:text-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal">
+                        {section.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <Button asChild className="mt-7 h-auto w-full rounded-full bg-amber px-5 py-3 font-bold text-ink shadow-none hover:bg-teal hover:text-paper">
+                  <a href={bookingUrl} target="_blank" rel="noreferrer">Talk to an expert <ArrowDownRight /></a>
+                </Button>
+              </nav>
+            </aside>
           </div>
-        </section>
 
-        <section className="border-b border-ink/10">
-          <div className="mx-auto grid max-w-[1400px] gap-10 px-5 py-16 md:px-8 md:py-20 lg:grid-cols-3">
-            <div className="lg:col-span-2"><span className="font-mono text-[11px] uppercase tracking-[0.18em] text-teal">Before the model</span><h2 className="mt-5 max-w-[18ch] text-balance font-display text-3xl font-bold md:text-4xl">Data quality is the first AI capability.</h2><p className="mt-5 max-w-[65ch] leading-relaxed text-ink/70">Duplicate events, unstable identity resolution, and inaccessible historical data stop more AI initiatives than model choice. We verify the foundation before promising the outcome.</p></div>
-            <aside className="border-l-4 border-amber pl-6"><p className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink/45">Readiness check</p><ul className="mt-5 space-y-4 text-sm text-ink/70">{["Reliable event history", "Resolvable customer identities", "Clear activation destination", "Named model owner"].map((item) => <li key={item} className="flex gap-3"><Check className="size-4 shrink-0 text-teal" />{item}</li>)}</ul></aside>
-          </div>
-        </section>
-        <ConsultationBand title="Make AI answer a real marketing question." copy="Bring us the decision you want to improve. We’ll help determine whether the data, model, and operational path can support it." />
+          <ConsultationBand title="Make AI answer a real marketing question." copy="Bring us the decision you want to improve. We’ll help determine whether the data, model, and operational path can support it." />
+        </article>
       </main>
     </PageShell>
   );
