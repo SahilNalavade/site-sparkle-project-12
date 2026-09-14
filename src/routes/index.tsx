@@ -63,8 +63,7 @@ function Index() {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-paper font-sans text-ink selection:bg-amber/30">
-      <div className="measurement-grid pointer-events-none fixed inset-0 z-0" aria-hidden="true" />
-      <div className="relative z-10">
+      <div>
         <header className="sticky top-0 z-40 border-b border-ink/10 bg-paper/85 backdrop-blur-xl">
           <nav aria-label="Main navigation" className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-4 md:px-8">
             <a href="#top" className="flex items-center gap-2 font-display text-lg font-bold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal">
