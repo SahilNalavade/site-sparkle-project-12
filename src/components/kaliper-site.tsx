@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 export const bookingUrl = "https://calendly.com/kaliper_expert/discovery-call";
 
 const navItems = [
-  { to: "/data-engineering-services/" as const, label: "Data Engineering" },
-  { to: "/ai-ml-consulting-for-marketing/" as const, label: "AI for Marketing" },
+  { to: "/data-engineering-services" as const, label: "Data Engineering" },
+  { to: "/ai-ml-consulting-for-marketing" as const, label: "AI for Marketing" },
 ];
 
 export function SiteHeader() {

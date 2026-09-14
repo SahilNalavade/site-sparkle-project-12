@@ -1,7 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
-import { ConsultationBand, PageShell, SiteHeader, bookingUrl } from "@/components/kaliper-site";
+import { ConsultationBand, PageShell, bookingUrl } from "@/components/kaliper-site";
 
 const tools = ["Segment", "Mixpanel", "Power BI", "Looker", "Fivetran", "Amplitude", "Google Analytics 4", "Statsig", "Heap"];
 
@@ -61,7 +61,6 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <PageShell>
-        <SiteHeader />
 
         <main id="top">
           <section className="border-b border-ink/10">
@@ -127,7 +126,7 @@ function Index() {
                   <div className="mt-5 flex h-16 items-end gap-1.5" aria-hidden="true">{service.bars.map((height, index) => <div key={height} className={`flex-1 rounded-t-sm ${service.colors[index]}`} style={{ height: `${height}%` }} />)}</div>
                   <h3 className="mt-6 font-display text-xl font-semibold">{service.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-ink/65">{service.copy}</p>
-                  {serviceIndex !== 1 && <Link to={serviceIndex === 0 ? "/data-engineering-services/" : "/ai-ml-consulting-for-marketing/"} className="mt-5 inline-flex text-sm font-bold underline decoration-amber decoration-2 underline-offset-4">View service</Link>}
+                  {serviceIndex !== 1 && <Link to={serviceIndex === 0 ? "/data-engineering-services" : "/ai-ml-consulting-for-marketing"} className="mt-5 inline-flex text-sm font-bold underline decoration-amber decoration-2 underline-offset-4">View service</Link>}
                 </article>)}
               </div>
             </div>
