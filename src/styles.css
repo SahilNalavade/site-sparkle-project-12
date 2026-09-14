@@ -161,14 +161,6 @@
   a, button { outline-color: var(--teal); }
 }
 
-.measurement-grid {
-  background-image:
-    linear-gradient(color-mix(in oklab, var(--ink) 4%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in oklab, var(--ink) 4%, transparent) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: linear-gradient(to bottom, black 0%, transparent 82%);
-}
-
 .ticker-mask { mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent); }
 
 @keyframes kaliper-fade {
