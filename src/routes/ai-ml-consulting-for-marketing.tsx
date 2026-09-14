@@ -14,7 +14,7 @@ const capabilities = [
 
 const process = ["Audit", "Feature engineering", "Validation", "Integration", "Monitoring"];
 
-export const Route = createFileRoute("/ai-ml-consulting-for-marketing/")({
+export const Route = createFileRoute("/ai-ml-consulting-for-marketing")({
   head: () => ({
     meta: [
       { title: "AI/ML Consulting for Marketing | Kaliper" },

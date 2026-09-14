@@ -13,7 +13,7 @@ const services = [
   ["Data architecture", "Choose a vendor-neutral structure that fits your volume, team, security, and reporting needs."],
 ];
 
-export const Route = createFileRoute("/data-engineering-services/")({
+export const Route = createFileRoute("/data-engineering-services")({
   head: () => ({
     meta: [
       { title: "Data Engineering Services & Consulting | Kaliper" },
