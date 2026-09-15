@@ -21,10 +21,10 @@ export const Route = createFileRoute("/data-engineering-services")({
       { property: "og:title", content: "Data Engineering Services & Consulting | Kaliper" },
       { property: "og:description", content: "Reliable data foundations for modern marketing, analytics, and AI." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://site-sparkle-project-12.lovable.app/data-engineering-services/" },
+      { property: "og:url", content: "/data-engineering-services/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://site-sparkle-project-12.lovable.app/data-engineering-services/" }],
+    links: [{ rel: "canonical", href: "/data-engineering-services/" }],
   }),
   component: DataEngineeringPage,
 });

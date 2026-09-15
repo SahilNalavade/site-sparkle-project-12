@@ -43,10 +43,10 @@ export const Route = createFileRoute("/ai-ml-consulting-for-marketing")({
       { property: "og:title", content: "Why Most Marketing AI Never Ships" },
       { property: "og:description", content: "Predictive scoring, mix modeling, attribution — and the data readiness that decides whether any of it survives contact with the business." },
       { property: "og:type", content: "article" },
-      { property: "og:url", content: "https://site-sparkle-project-12.lovable.app/ai-ml-consulting-for-marketing/" },
+      { property: "og:url", content: "/ai-ml-consulting-for-marketing/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://site-sparkle-project-12.lovable.app/ai-ml-consulting-for-marketing/" }],
+    links: [{ rel: "canonical", href: "/ai-ml-consulting-for-marketing/" }],
   }),
   component: AiMarketingArticle,
 });

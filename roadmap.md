@@ -6,4 +6,3 @@
 - [x] Connect navigation across all three pages
 - [x] Verify desktop, mobile, links, metadata, and runtime health
 - [x] Add editorial imagery and professional article design details to the AI/ML blog
-- [x] Rebuild the homepage around the supplied Kaliper content and GTM audit
