@@ -70,8 +70,8 @@ export function GtmAudit() {
               <div className="mt-3 h-1 bg-paper/15" aria-hidden="true">
                 <div className="h-full bg-amber transition-[width] duration-300" style={{ width: `${(step / questions.length) * 100}%` }} />
               </div>
-              <h3 className="mt-8 max-w-[26ch] font-display text-2xl font-semibold leading-snug">{questions[step].prompt}</h3>
-              <p className="mt-3 max-w-[54ch] text-sm leading-relaxed text-paper/55">{questions[step].detail}</p>
+              <h3 className="mt-8 max-w-[26ch] font-display text-2xl font-semibold leading-snug">{questions[step]?.prompt}</h3>
+              <p className="mt-3 max-w-[54ch] text-sm leading-relaxed text-paper/55">{questions[step]?.detail}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 {answers.map((answer) => (
                   <Button key={answer.label} variant="outline" onClick={() => chooseAnswer(answer.score)} className="h-auto rounded-full border-paper/25 bg-transparent px-6 py-3 text-paper shadow-none hover:border-amber hover:bg-amber hover:text-ink">
