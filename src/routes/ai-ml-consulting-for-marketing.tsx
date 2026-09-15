@@ -3,7 +3,7 @@ import { ArrowDownRight, Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { ConsultationBand, PageShell, bookingUrl } from "@/components/kaliper-site";
-import editorialImage from "@/assets/marketing-ai-editorial.jpg";
+import editorialImage from "@/assets/marketing-ai-editorial.jpg.asset.json";
 
 const sections = [
   { id: "beyond-the-label", label: "Beyond the AI label" },
@@ -75,7 +75,7 @@ function AiMarketingArticle() {
               <figure className="kal-anim mt-12 [animation-delay:280ms] lg:mt-16">
                 <div className="relative overflow-hidden rounded-2xl border border-ink/10 bg-ink">
                   <img
-                    src={editorialImage}
+                    src={editorialImage.url}
                     alt="A physical data model turning scattered amber signals into an ordered marketing decision"
                     width={1600}
                     height={1000}
