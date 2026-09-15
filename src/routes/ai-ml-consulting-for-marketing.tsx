@@ -3,6 +3,7 @@ import { ArrowDownRight, Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { ConsultationBand, PageShell, bookingUrl } from "@/components/kaliper-site";
+import editorialImage from "@/assets/marketing-ai-editorial.jpg";
 
 const sections = [
   { id: "beyond-the-label", label: "Beyond the AI label" },
@@ -71,12 +72,31 @@ function AiMarketingArticle() {
                   <span>9 min read</span>
                 </div>
               </div>
+              <figure className="kal-anim mt-12 [animation-delay:280ms] lg:mt-16">
+                <div className="relative overflow-hidden rounded-2xl border border-ink/10 bg-ink">
+                  <img
+                    src={editorialImage}
+                    alt="A physical data model turning scattered amber signals into an ordered marketing decision"
+                    width={1600}
+                    height={1000}
+                    className="aspect-[8/5] w-full object-cover"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-gradient-to-t from-ink/80 to-transparent px-5 pb-5 pt-16 text-paper md:px-7 md:pb-7">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.16em]">Signal → model → decision</span>
+                    <span className="hidden font-mono text-[10px] uppercase tracking-[0.16em] text-paper/65 sm:inline">Fig. 01</span>
+                  </div>
+                </div>
+                <figcaption className="mt-3 max-w-[72ch] text-xs leading-relaxed text-ink/50">
+                  Useful marketing AI is an operational chain, not a prediction in isolation.
+                </figcaption>
+              </figure>
             </div>
           </header>
 
           <div className="mx-auto grid max-w-[1400px] gap-14 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[minmax(0,46rem)_1fr]">
             <div className="space-y-16">
               <section id="beyond-the-label" className="scroll-mt-28">
+                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">01 · Framing</span>
                 <h2 className="font-display text-3xl font-bold">Beyond the AI label</h2>
                 <p className="mt-5 leading-relaxed text-ink/75">
                   Most tools sold as marketing AI are reporting layers with a prediction bolted on. They surface a number, place it on a dashboard, and leave the hardest part &mdash; deciding what to do differently &mdash; entirely with the team.
@@ -84,14 +104,17 @@ function AiMarketingArticle() {
                 <p className="mt-4 leading-relaxed text-ink/75">
                   The useful question is not &ldquo;what can a model predict?&rdquo; but &ldquo;which recurring decision is currently made on instinct, and would a better estimate change it?&rdquo; That framing eliminates a surprising share of proposed AI projects before a line of code is written, which is exactly what it is for.
                 </p>
-                <figure className="mt-8 border-l-4 border-amber pl-6">
-                  <blockquote className="font-display text-xl font-semibold leading-snug">
+                <figure className="relative mt-9 overflow-hidden border-y border-ink/15 py-8 pl-10 md:py-10 md:pl-14">
+                  <span className="absolute left-0 top-7 font-display text-5xl leading-none text-amber" aria-hidden="true">“</span>
+                  <blockquote className="max-w-[30ch] font-display text-xl font-semibold leading-snug md:text-2xl">
                     A prediction that arrives after the budget is allocated is a report, not a model.
                   </blockquote>
+                  <figcaption className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-ink/45">A practical test for usefulness</figcaption>
                 </figure>
               </section>
 
               <section id="what-actually-works" className="scroll-mt-28">
+                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">02 · Applications</span>
                 <h2 className="font-display text-3xl font-bold">What actually works</h2>
                 <p className="mt-5 leading-relaxed text-ink/75">
                   Five categories cover nearly every marketing AI engagement that makes it to production and stays there.
@@ -110,6 +133,7 @@ function AiMarketingArticle() {
               </section>
 
               <section id="readiness" className="scroll-mt-28">
+                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">03 · Foundations</span>
                 <h2 className="font-display text-3xl font-bold">The readiness question</h2>
                 <p className="mt-5 leading-relaxed text-ink/75">
                   Duplicate events, unstable identity resolution, and historical data locked inside a platform export stop more AI initiatives than model selection ever has. Before promising an outcome, it is worth confirming four things.
@@ -128,6 +152,7 @@ function AiMarketingArticle() {
               </section>
 
               <section id="operating-model" className="scroll-mt-28">
+                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">04 · Operations</span>
                 <h2 className="font-display text-3xl font-bold">Operating a model</h2>
                 <p className="mt-5 leading-relaxed text-ink/75">
                   Launch is the cheap part. Inputs drift, channels change, and a model trained on last year&rsquo;s buying behaviour quietly degrades. Treat monitoring, retraining triggers, and a named human owner as part of the original scope, and the model keeps earning its place. Skip them, and it becomes another number nobody trusts within two quarters.
@@ -135,6 +160,7 @@ function AiMarketingArticle() {
               </section>
 
               <section id="takeaways" className="scroll-mt-28">
+                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-amber">05 · Summary</span>
                 <h2 className="font-display text-3xl font-bold">Takeaways</h2>
                 <ol className="mt-7 space-y-5">
                   {takeaways.map((item, index) => (
@@ -148,7 +174,8 @@ function AiMarketingArticle() {
             </div>
 
             <aside className="lg:sticky lg:top-28 lg:h-fit">
-              <nav aria-label="Article contents" className="rounded-2xl border border-ink/10 bg-paper/65 p-6 shadow-instrument backdrop-blur-xl">
+              <nav aria-label="Article contents" className="relative overflow-hidden rounded-2xl border border-ink/10 bg-paper/65 p-6 shadow-instrument backdrop-blur-xl">
+                <span className="absolute inset-y-0 left-0 w-1 bg-teal" aria-hidden="true" />
                 <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink/45">In this article</p>
                 <ul className="mt-4 space-y-3 text-sm">
                   {sections.map((section) => (
