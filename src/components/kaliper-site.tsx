@@ -52,15 +52,40 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-ink/10">
-      <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-5 px-5 py-8 text-sm text-ink/50 sm:flex-row sm:items-center md:px-8">
-        <Link to="/" className="flex items-center gap-2 font-display font-bold text-ink"><span className="size-2 rounded-full bg-amber" />Kaliper</Link>
-        <div className="flex flex-wrap gap-x-5 gap-y-2">
-          {navItems.map((item) => <Link key={item.to} to={item.to} className="hover:text-ink">{item.label}</Link>)}
+    <footer className="border-t border-ink/10 bg-paper">
+      <div className="mx-auto max-w-[1400px] px-5 py-12 md:px-8 md:py-16">
+        <div className="grid gap-10 border-b border-ink/10 pb-12 md:grid-cols-2 lg:grid-cols-[1.35fr_repeat(3,1fr)]">
+          <div>
+            <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold text-ink"><span className="size-2.5 rounded-full bg-amber" />KALIPER</Link>
+            <div className="mt-6 space-y-2 text-sm leading-relaxed text-ink/55">
+              <p>IIIT Innovation Centre, Bengaluru, India</p>
+              <p>Pickering, Ontario, Canada</p>
+            </div>
+          </div>
+          <FooterGroup title="Services" items={["Data planning", "Data engineering", "Marketing analytics", "Product analytics", "BI & visualization", "AI & ML"]} />
+          <FooterGroup title="Technology" items={["Analytics technologies", "CDP & data pipelines", "A/B testing", "Integrations", "Data navigation", "GTM Auditor"]} />
+          <FooterGroup title="Company" items={["About us", "Blog", "Case studies", "Contact", "Privacy"]} />
         </div>
-        <a href="https://www.linkedin.com/company/kaliper/" target="_blank" rel="noreferrer" className="underline-offset-4 hover:text-ink hover:underline">LinkedIn</a>
+        <div className="flex flex-col items-start justify-between gap-4 pt-6 font-mono text-[10px] uppercase tracking-[0.12em] text-ink/45 sm:flex-row sm:items-center">
+          <p>© 2026 KALIPER · analytics made simple</p>
+          <div className="flex gap-5">
+            <a href="https://x.com/kaliper_io" target="_blank" rel="noreferrer" className="hover:text-ink">X @kaliper_io</a>
+            <a href="https://www.linkedin.com/company/kaliper/" target="_blank" rel="noreferrer" className="hover:text-ink">LinkedIn</a>
+          </div>
+        </div>
       </div>
     </footer>
+  );
+}
+
+function FooterGroup({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div>
+      <h2 className="font-display text-sm font-semibold text-ink">{title}</h2>
+      <ul className="mt-4 space-y-2.5 text-sm text-ink/50">
+        {items.map((item) => <li key={item}>{item}</li>)}
+      </ul>
+    </div>
   );
 }
 
